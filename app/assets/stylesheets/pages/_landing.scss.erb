@@ -1,0 +1,57 @@
+#landing-container {
+  background-color: #2b3a67;
+  padding: 15px;
+  height: 720px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  <%# background-image: url(); %>
+  background: linear-gradient(rgba(43,58,103,0.8), rgba(43,58,103,0.8)), url(<%= asset_path 'landing.jpg' %>);
+  background-size: cover;
+
+  #tagline {
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+
+  p {
+    margin-top: 32px;
+    margin-bottom: 280px;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+  }
+
+  #landing-btn {
+    margin-top: 32px;
+    background-color: $success;
+    border: 1px solid $success;
+    border-radius: 7px;
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+    text-shadow: 2px 2px 2px rgba(206,89,55,0);
+    text-shadow: 1px 1px 1px rgba(0,0,0,.5);
+    text-shadow: -1px -1px 1px rgba(255,255,255,.1);
+    text-decoration: none;
+    padding: 20px 30px;
+    transition: 0.02s;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 10px 15px -3px, rgba(0, 0, 0, 0.09) 0px 4px 6px -2px;
+  }
+
+  #landing-btn:focus {
+    background-color: $success;
+    border: 2px solid white;
+    transform: scale(1.02);
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 10px 15px -3px, rgba(0, 0, 0, 0.09) 0px 4px 6px -2px;
+  }
+
+  h5 {
+    margin-top: 64px;
+    font-size: 22px;
+    color:$success;
+  }
+}

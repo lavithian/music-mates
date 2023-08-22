@@ -1,0 +1,158 @@
+.concert-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: left;
+  height: 200px;
+  width: 315px;
+  border-radius: 5px;
+  margin: 16px auto;
+  padding: 12px;
+  background-size: cover;
+  background-blend-mode: saturation;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  transition: 0.05s;
+  position: relative;
+  overflow: hidden;
+}
+
+.img-grey {
+  position: absolute;
+  background-size: cover;
+  height: 102%;
+  width: 102%;
+  filter: grayscale(100%);
+  z-index: 100;
+  top: -2%;
+  left: -2%;
+}
+
+.img-gradient {
+  background: linear-gradient(black, rgba(0,0,0,0.1));
+  z-index: 200;
+  position: absolute;
+  background-size: cover;
+  height: 102%;
+  width: 102%;
+  top: -2%;
+  left: -2%;
+}
+
+.concert-card:active {
+  background-size: cover;
+  transform: scale(1.02);
+
+  .img-grey {
+    filter: none;
+  }
+}
+
+.concert-card h2 {
+  font-size: 20px;
+  margin-bottom: 4px;
+  color: white;
+  text-shadow: 0.75px 0.75px #2B3A67;
+}
+
+.concert-card p {
+  font-size: 12px;
+  margin-bottom: 3px;
+  color: white;
+  text-shadow: 0.75px 0.75px #2B3A67;
+}
+
+a {
+  text-decoration: none;
+}
+
+.concert-avatars, .concert-info {
+  z-index: 500;
+}
+
+.concert-avatars {
+  color: white;
+  display: flex;
+}
+
+.avatar-overflow {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  font-size: 13px;
+  margin: 0 5px;
+  margin-top: 2px;
+
+}
+
+.refresher {
+  align-content: center;
+  p {
+    text-align: center;
+    color: black;
+    margin: 2px;
+  }
+  a {
+    text-decoration: none;
+    color: $success;
+    font-size: 20px;
+    background-color: $success;
+  }
+}
+
+.a-tag-center {
+  display: block;
+  text-align: center;
+}
+//
+
+#h1-basic-styling {
+  text-align: center;
+  margin: 0;
+  font-size: 28px;
+  color:white;
+  font-weight: 700;
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  width: auto;
+  z-index: 700;
+}
+
+#h2-basic-styling {
+  text-align: center;
+  font-size: 16px;
+  color: #2B3A67;
+  font-weight: 700;
+}
+
+#concert-index-h1 {
+  font-weight: 700;
+  color: #2B3A67;
+
+  text-align: center;
+}
+
+#concert-index-h2 {
+  font-weight: 700;
+  color: #2B3A67;
+  text-align: center;
+}
+
+.a-tag-center a {
+  color: white;
+  font-size: 16px;
+  padding: 5px 8px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.a-tag-center p {
+  margin-top: 5px;
+}
+
+.a-tag-center {
+  margin-bottom: 12px;
+}

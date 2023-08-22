@@ -1,0 +1,85 @@
+.invitation {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h1 {
+    text-align: center;
+    color: #2b3a67;
+    font-weight: 700;
+    margin: 10px auto;
+    font-size: 20px;
+    width: 80%;
+  }
+
+  h4 {
+    text-align: center;
+    font-size: 14px;
+  }
+
+  .past-invites {
+    text-align: center;
+    font-size: 12px;
+  }
+
+ .status-buttons {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  text-decoration: none;
+  align-items: center;
+  margin: 0 auto;
+  width: 290px;
+
+    .accept {
+      background-color: $success;
+      border: 1px solid $success;
+      border-radius: 7px;
+      margin-top: 0;
+      padding: 8px 12px;
+      text-align: center;
+      width: 100px;
+      transition: all 0.2s;
+      box-shadow: rgba(0, 0, 0, 0.2) 0px 10px 15px -3px, rgba(0, 0, 0, 0.09) 0px 4px 6px -2px;
+      text-decoration: none;
+      color: white;
+      font-weight: 700;
+      }
+    }
+
+    .accept:active {
+      border: 1px solid white;
+      transform: scale(1.02);
+    }
+
+    .decline{
+      background-color: #2b3a67;
+      border: 1px solid #2b3a67;
+      margin-top: 0;
+      border-radius: 7px;
+      padding: 8px 12px;
+      text-align: center;
+      width: 100px;
+      transition: all 0.2s;
+      box-shadow: rgba(0, 0, 0, 0.2) 0px 10px 15px -3px, rgba(0, 0, 0, 0.09) 0px 4px 6px -2px;
+      text-decoration: none;
+      color: white;
+      font-weight: 700;
+
+    }
+
+    .decline:active {
+      border: 1px solid white;
+      transform: scale(1.02);
+    }
+  }
+  #no-invites {
+    text-align: center;
+  }
+  .sad-duck{
+    display: block;
+    margin: auto;
+    width: 60%;
+    border-radius: 70%;
+  }

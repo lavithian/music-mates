@@ -1,0 +1,86 @@
+#page-container-profile {
+  margin-top: 80px;
+  margin-bottom: 75px;
+}
+
+.flexbox {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.profile-artist-avatar {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+}
+
+.show-detail-container {
+  display: flex;
+  flex-direction: row;
+  margin: 17px auto;
+  width: 310px;
+  height: 60px;
+  padding: 10px;
+  background-color: #2b3a67;
+  border-radius: 16px;
+  justify-content: space-around;
+  align-items: center;
+  color: white;
+  font-size: larger;
+  font-family: revert;
+  font-weight: bolder;
+}
+.username-bootstrap {
+  margin: 20px;
+  border-radius: 8px;
+  color: white;
+  background-color: $dark-blue;
+  width: 90%;
+}
+.username-attending {
+  margin-top: 25px;
+  color: #2b3a67;
+
+}
+
+.profile-artist-cards {
+  display: flex;
+  padding: 25px 0px;
+  list-style: none;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+}
+
+.profile-artist-cards .card-info {
+  display: flex;
+  flex: 0 0 100%;
+  border-radius: 12px;
+  box-shadow: 0 5px 2px rgba(0, 80, 80, 0.1);
+  scroll-snap-align: start;
+  transition: all 0.2s;
+  height: 250px;
+  justify-content: center;
+  align-items: center;
+  background-position: center;
+  margin: 0 3px;
+}
+
+.profile-artist-cards::-webkit-scrollbar {
+  height: 12px;
+}
+
+.profile-artist-cards::-webkit-scrollbar-thumb,
+.profile-artist-cards::-webkit-scrollbar-track {
+  border-radius: 92px;
+}
+
+.profile-artist-cards::-webkit-scrollbar-thumb {
+  background: $dark-blue;
+}
+
+.profile-artist-cards::-webkit-scrollbar-track {
+  background: $light-blue;
+}
+
+//

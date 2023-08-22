@@ -1,0 +1,13 @@
+<%= link_to "Decline",
+    decline_invitation_path(invite),
+    class: "decline",
+    data: { turbo_method: :patch,
+            controller: "sweet-alert",
+            action: "click->sweet-alert#fireModal",
+            sweet_alert_title_value: "You've declined the invitation!",
+            sweet_alert_text_value: "Perhaps next time with a better mob, hey?",
+            sweet_alert_icon_value: "success",
+            sweet_alert_buttons_value: false
+            }  %>
+
+<!-- stays the same page-->

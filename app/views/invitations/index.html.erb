@@ -1,0 +1,45 @@
+<div id="page-container-groups-index">
+  <div class="invitation">
+    <% if @invitations.present? %>
+      <% if @invitations.any? { |invite| invite.status == "pending" } %>
+        <h1>Hey <%= current_user.first_name %>, you've been invited to a concert!</h1>
+
+        <% @invitations.each do |invite| %>
+          <% concert = invite.group.concert %>
+          <% if invite.status == "pending" %>
+            <div class="concert-card">
+              <div class="img-grey" style="background-image: url(<%= concert.artist.image_url %>)"></div>
+              <div class="img-gradient"></div>
+              <div class="concert-info">
+                <h2><strong><%= concert.artist.name %></strong></h2>
+                <p><strong><%= concert.date.strftime("%A %e %B %Y") %></strong></p>
+                <p><%= concert.venue %>, <%= concert.location %></p>
+              </div>
+              <div class="concert-avatars">
+                <%= render "shared/index_avatars", concert: invite.group %>
+              </div>
+            </div>
+            <div class="status-buttons">
+              <%= render "accept_button", invite: invite %>
+              <%= render "decline_button", invite: invite %>
+            </div>
+          <% end %>
+          <% if invite.status != "pending" %>
+            <div class="past-invites">
+              <p>You <%= invite.status %> an invitation for <%= concert.artist.name %>
+            </div>
+          <% end %>
+        <% end %>
+      <% else %>
+        <h1>Hey <%= current_user.first_name %>, you haven't got any invitations at the moment.</h1>
+        <div class="sad-duck"><%= image_tag "sad_duck.gif", class: 'sad-duck' %></div>
+      <% end %>
+    <% else %>
+      <h1>Hey <%= current_user.first_name %>, you haven't got any invitations at the moment.</h1>
+      <div class="sad-duck"><%= image_tag "sad_duck.gif", class: 'sad-duck' %></div>
+    <% end %>
+  </div>
+</div>
+<!--
+set_flash_message(:notice, :success, kind: "Spotify") if is_navigational_format?
+-->
