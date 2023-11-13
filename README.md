@@ -9,42 +9,29 @@
 Due to time constraints, this app is not responsive and was designed for mobile only, specifically iPhone X screen size.
 
 ### ✨ [Demo Walkthrough]
-Youtube link with a video of us demonstrating the app will go here once it's available!
+Le Wagon Melbourne Demo Day: https://youtu.be/_JNlZx9lMPU?si=R9w3CDRn3dwG38_k&t=468
 
-## Installation
+## How to view
 
-🛠 Setting up the app:
->
-```sh
-bundle install
-yarn install
-yarn build --watch
-rails db:create
-rails db:migrate
-rails db:seed
-```
+Open [INSERT WEB LINK HERE]
 
-Running the app in development mode:
->
-```sh
-rails s
-```
-Open http://localhost:3000
+Sign In as the following user:
+Username: music@mates.com
+Password: 123456
 
-Reload the page to see your edits.
-
-To bypass the Spotify login page and login manually, just go directly to the url of any of the pages.
-
-Check the seeds file for demo user logins.
-
-After logging in, click the 'Check for new concerts' button on the Concerts Index to pull concert data from the Bandsintown API.
+Or create your own user.
 
 ## Notes
 
-A Spotify account is required to login to and use the live website.
-Because Spotify considers the app to still be in development mode, currently only 25 Spotify users can login and use the app. These users must be explicitly added in the Spotify dashboard before they can authenticate with the app. If you’d like to access the live website, please let us know!
+The original app utilised Spotify API and BandsInTown API.
+It was designed to recommend you bands that are in your area that aligned with your Spotify music tastes.
+However, both APIs have expired and now all data have been mocked and generated with Seeds.
 
-Access to the Bandsintown API was granted under a student license and will only be availble until December 15th 2022.
+## Features
+
+Chat with people who are attending the same band as you.
+Create or Join existing groups that are attending the same band.
+See which artists your friends follow.
 
 ## Authors
 

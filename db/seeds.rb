@@ -41,24 +41,34 @@ hunter = User.create!(
   password: "123456",
   location: "AU"
 )
-hunter.photo.attach(io: URI.open("https://res.cloudinary.com/benschem/image/upload/v1663733821/production/hunter-avatar_vkykjk.jpg"), filename: "hunters-avatar.png", content_type: "image/jpg")
+# hunter.photo.attach(io: URI.open("https://res.cloudinary.com/benschem/image/upload/v1663733821/production/hunter-avatar_vkykjk.jpg"), filename: "hunters-avatar.png", content_type: "image/jpg")
+hunter.photo.attach(io: File.open("./app/assets/images/hunter_transparent.png"), filename: "hunter", content_type: "image/png")
+
+all_artists.each do |artist|
+  Follow.create(
+    user: hunter,
+    artist: Artist.find_by(name: artist.name)
+  )
+end
+
 puts "Micah Kim created! Email: music@mates.com, Password: 123456"
 
 @classmates.each do |classmate|
+  avatar_pic = Faker::Avatar.image(size: "50x50", format: "jpg")
   new_user = User.new(
     first_name: classmate[0],
     last_name: classmate[1],
     email: "#{classmate[0]}@#{classmate[1]}.com",
     password: "123456",
     location: "AU",
-    avatar: Faker::Avatar.image,
+    avatar: avatar_pic,
   )
-  new_user.photo.attach(io: URI.open(classmate[2]), filename: "#{classmate[0]}-avatar.png", content_type: "image/jpg")
+  # new_user.photo.attach(io: URI.open(classmate[2]), filename: "#{classmate[0]}-avatar.png", content_type: "image/png")
+  new_user.photo.attach(io: URI.open(avatar_pic), filename: "avatar", content_type: "image/jpg")
   new_user.save
   puts "#{new_user.first_name} #{new_user.last_name} created!  Email: #{new_user.email}, Password: 123456"
 
   # CREATE SOME DUMMY FOLLOWS FOR OUR DUMMY USERS
-
   Follow.create(
     user: new_user,
     artist: Artist.find_by(name: "Stormzy")
@@ -84,44 +94,82 @@ end
 
 # THESE API METHODS NEED TO BE DEFINED BEFORE WE CALL THEM
 
-def concerts_from_api_for(artist)
-  potential_concerts = HTTParty.get("https://rest.bandsintown.com/artists/#{url_encode(artist.name)}/events?app_id=#{ENV["BANDS_IN_TOWN_KEY"]}&date=upcoming")
-  # returns array of concerts objects
-  potential_concerts[0] && potential_concerts[0]["datetime"] ? potential_concerts : false
-  # ⬆️ this line is protecting against empty/nil concerts being added
-end
+# def concerts_from_api_for(artist)
+#   potential_concerts = HTTParty.get("https://rest.bandsintown.com/artists/#{url_encode(artist.name)}/events?app_id=#{ENV["BANDS_IN_TOWN_KEY"]}&date=upcoming")
+#   # returns array of concerts objects
+#   potential_concerts[0] && potential_concerts[0]["datetime"] ? potential_concerts : false
+#   # ⬆️ this line is protecting against empty/nil concerts being added
+# end
 
-def  create_concert_unless_it_already_exists(concert, artist)
-  new_concert = Concert.where(artist: artist, date: DateTime.parse(concert["datetime"])).first_or_create(
-    artist: artist,
-    date: DateTime.parse(concert["datetime"]),
-    location: concert["venue"]["location"],
-    city: concert["venue"]["city"],
-    country: concert["venue"]["country"],
-    description: Rails::Html::FullSanitizer.new.sanitize(concert["description"]),
-    venue: concert["venue"]["name"],
-    latitude: concert["venue"]["latitude"],
-    longitude: concert["venue"]["longitude"]
-  )
-  puts "Created a concert in #{new_concert.city} for #{artist.name} on #{new_concert.date}."
-end
+# def  create_concert_unless_it_already_exists(concert, artist)
+#   new_concert = Concert.where(artist: artist, date: DateTime.parse(concert["datetime"])).first_or_create(
+#     artist: artist,
+#     date: DateTime.parse(concert["datetime"]),
+#     location: concert["venue"]["location"],
+#     city: concert["venue"]["city"],
+#     country: concert["venue"]["country"],
+#     description: Rails::Html::FullSanitizer.new.sanitize(concert["description"]),
+#     venue: concert["venue"]["name"],
+#     latitude: concert["venue"]["latitude"],
+#     longitude: concert["venue"]["longitude"]
+#   )
+#   puts "Created a concert in #{new_concert.city} for #{artist.name} on #{new_concert.date}."
+# end
 
 # THIS IS WHERE WE MAKE THE BANDSINTOWN API CALL
 all_users = User.all
 
-puts "Making an API call to BandsInTown to get concerts for each user..."
+# puts "Making an API call to BandsInTown to get concerts for each user..."
+
+# all_users.each do |user|
+#   puts "Going through #{user.first_name}'s artists..."
+#   user.artists.each do |artist|
+#     puts "Looking up concerts for #{artist.name}..."
+#     artist_concerts = concerts_from_api_for(artist)
+#     if artist_concerts
+#       artist_concerts.each do |concert|
+#         if concert["venue"]["country"] == "Australia"
+#           create_concert_unless_it_already_exists(concert, artist)
+#         end
+#       end
+#     end
+#   end
+# end
+
+def set_location(location)
+  case location
+  when "Melbourne" then 'Melbourne Cricket Ground'
+  when "Sydney" then 'Sydney Opera House'
+  when "Hobart" then 'Federation Concert Hall'
+  when "Adelaide" then 'Adelaide Entertainment Centre'
+  when "Perth" then 'Perth Arena'
+  when "Darwin" then 'Darwin Entertainment Centre'
+  when "Brisbane" then 'Brisbane Entertainment Centre'
+  else 'Metropolitan Hotel'
+  end
+end
+
+def create_concert(artist)
+  location = ["Melbourne", "Sydney", "Hobart", "Adelaide", "Perth", "Darwin", "Brisbane"].sample
+  new_concert = Concert.new(
+    artist: artist,
+    date: Time.now,
+    location: location,
+    city: location,
+    description: "#{artist.name}'s concert in #{location}",
+    venue: set_location(location),
+    country: "Australia"
+  )
+  new_concert.save
+  puts "Created a concert in #{new_concert.city} for #{artist.name} on #{new_concert.date}."
+end
 
 all_users.each do |user|
   puts "Going through #{user.first_name}'s artists..."
   user.artists.each do |artist|
-    puts "Looking up concerts for #{artist.name}..."
-    artist_concerts = concerts_from_api_for(artist)
-    if artist_concerts
-      artist_concerts.each do |concert|
-        if concert["venue"]["country"] == "Australia"
-          create_concert_unless_it_already_exists(concert, artist)
-        end
-      end
+    3.times do
+      puts "Making concerts for #{artist.name}..."
+      create_concert(artist)
     end
   end
 end

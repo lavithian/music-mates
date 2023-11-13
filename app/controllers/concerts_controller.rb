@@ -10,6 +10,7 @@ class ConcertsController < ApplicationController
     else
       @concerts = current_user.concerts
     end
+    # @concerts = Concert.all
   end
 
   def show

@@ -114,16 +114,12 @@
   { name: "Chris Brown",
     image_url: "https://i.scdn.co/image/ab6761610000e5ebe50aa80e0f5869f84f6874d1",
     spotify_link: "https://open.spotify.com/artist/7bXgB6jMjp9ATFy66eO08Z" },
-
   {
     name: "The Smith Street Band",
     image_url: "https://i.scdn.co/image/ab6761610000e5ebbf7252960c8d3d1a83359d4e",
-    spotify_link: "https://open.spotify.com/artist/6DW1Yqi5B34jRtn9hPLvFp"
-  },
-
+    spotify_link: "https://open.spotify.com/artist/6DW1Yqi5B34jRtn9hPLvFp"},
   {
     name: "Kehlani",
     image_url: "https://i.scdn.co/image/ab6761610000e5ebd2657bcafcb300d90816523f",
-    spotify_link: "https://open.spotify.com/artist/0cGUm45nv7Z6M6qdXYQGTX"
-  }
+    spotify_link: "https://open.spotify.com/artist/0cGUm45nv7Z6M6qdXYQGTX"}
 ]

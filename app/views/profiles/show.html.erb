@@ -5,7 +5,7 @@
   </div>
     <div class="text-center py-2 fs-1 fw-bold username-bootstrap">
       <% if @user.photo.attached? %>
-        <%= cl_image_tag @user.photo.key, class: "avatar avatar-show" %>
+        <%= image_tag @user.photo, class: "avatar avatar-show" %>
       <% else %>
         <%= image_tag "default_avatar.jpg", class: "avatar group-avatar" %>
       <% end %>

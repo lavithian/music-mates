@@ -29,7 +29,7 @@
         <div class="avatar-container">
           <% @pending_invitations.first(5).each do |invitation|%>
             <% if invitation.user.photo.attached? %>
-              <%= cl_image_tag invitation.user.photo.key, class: "avatar group-avatar" %>
+              <%= image_tag invitation.user.photo, class: "avatar group-avatar" %>
             <% else %>
               <%= image_tag "default_avatar.jpg", class: "avatar group-avatar" %>
             <% end %>
@@ -50,7 +50,7 @@
         <div class="avatar-container">
           <% @accepted_invitations.each do |invitation|%>
             <% if invitation.user.photo.attached? %>
-              <%= cl_image_tag invitation.user.photo.key, class: "avatar group-avatar" %>
+              <%= image_tag invitation.user.photo, class: "avatar group-avatar" %>
             <% else %>
               <%= image_tag "default_avatar.jpg", class: "avatar group-avatar" %>
             <% end %>
